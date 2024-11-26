@@ -17,7 +17,6 @@ public class WebClientConfig {
 
         //numOfRows, pageNo, serviceKey 동적으로 변경해야됨
         return webClientBuilder
-                .baseUrl("https://apis.data.go.kr/B551011/KorWithService1")
                 .defaultHeader("Accept","application/json")
                 .clientConnector(new ReactorClientHttpConnector(HttpClient.create().responseTimeout(Duration.ofSeconds(60))))
                 .filter(((request, next) -> {
@@ -25,6 +24,7 @@ public class WebClientConfig {
                     return next.exchange(request)
                             .doOnTerminate(()-> System.out.println("Response"));
                 }))
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)) // 10MB
                 .build();
     }
 }

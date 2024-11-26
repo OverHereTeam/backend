@@ -25,8 +25,8 @@ public class DbInitController {
     @GetMapping("/{areaCode}/{numOfRows}/{pageNo}")
     public String initTouristAttraction(@PathVariable String areaCode,@PathVariable String numOfRows, @PathVariable String pageNo) throws UnsupportedEncodingException {
         RequestHeaderDto requestHeaderDto = RequestHeaderDto.builder().areaCode(areaCode).numOfRows(numOfRows).pageNo(pageNo).build();
-        Mono<ApiResponseDto> apiResponseDtoMono = dbInitService.fetchTouristAttractionData(requestHeaderDto);
-        touristAttractionService.saveTouristAttractions(apiResponseDtoMono);
+        ApiResponseDto apiResponseDto = dbInitService.fetchTouristAttractionData(dbInitService.buildEncodedUrl(requestHeaderDto));
+        touristAttractionService.saveTouristAttractions(apiResponseDto);
         return "ok";
     }
 }
