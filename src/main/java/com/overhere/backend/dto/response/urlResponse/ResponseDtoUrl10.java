@@ -3,8 +3,12 @@ package com.overhere.backend.dto.response.urlResponse;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 //무장애정보
+@Getter
+@Setter
 public class ResponseDtoUrl10 {
     private Response response;
 
@@ -36,7 +40,7 @@ public class ResponseDtoUrl10 {
     @Getter
     @Setter
     public static class Items {
-        private Item item;
+        private List<Item> item;
     }
 
     @Getter

@@ -1,12 +1,14 @@
 package com.overhere.backend.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class NonObstacleInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

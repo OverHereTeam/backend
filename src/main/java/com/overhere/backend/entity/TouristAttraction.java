@@ -3,12 +3,14 @@ package com.overhere.backend.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,7 +20,7 @@ public class TouristAttraction {
     @Column(name="tourist_attraction_id")
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="non_obstacle_info_id")
     private NonObstacleInfo nonObstacleInfo;
 
@@ -52,4 +54,13 @@ public class TouristAttraction {
     private Long likeCount;
 
     private Long view;
+
+    //편의 메서드
+    public void setNonObstacleInfo(NonObstacleInfo nonObstacleInfo){
+        this.nonObstacleInfo=nonObstacleInfo;
+        if(nonObstacleInfo!=null){
+            nonObstacleInfo.setTouristAttraction(this);
+        }
+    }
+
 }

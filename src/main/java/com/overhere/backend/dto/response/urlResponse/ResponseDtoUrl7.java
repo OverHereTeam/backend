@@ -6,6 +6,8 @@ import lombok.Setter;
 import java.util.List;
 
 //소개정보
+@Getter
+@Setter
 public class ResponseDtoUrl7 {
     private Response response;
 
@@ -37,7 +39,7 @@ public class ResponseDtoUrl7 {
     @Getter
     @Setter
     public static class Items {
-        private Item item;
+        private List<Item> item;
     }
 
     @Getter

@@ -3,7 +3,11 @@ package com.overhere.backend.dto.response.urlResponse;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 //이미지 정보
+@Getter
+@Setter
 public class ResponseDtoUrl9 {
     private Response response;
 
@@ -35,7 +39,7 @@ public class ResponseDtoUrl9 {
     @Getter
     @Setter
     public static class Items {
-        private Item item;
+        private List<Item> item;
     }
 
     @Getter
