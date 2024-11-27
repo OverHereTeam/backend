@@ -1,13 +1,13 @@
-package com.overhere.backend.dto;
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.overhere.backend.dto.response.urlResponse;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
+//관광지
 @Getter
 @Setter
-public class ApiResponseDto {
+public class ResponseDtoUrl3 {
 
     private Response response;
 
