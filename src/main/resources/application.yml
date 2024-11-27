@@ -11,10 +11,10 @@ spring:
     hibernate:
       ddl-auto: ${LOCAL_DDL_TYPE}
 
-logging:
-  level:
-    org:
-      springframework: debug
+#logging:
+#  level:
+#    org:
+#      springframework: debug
 
-
-
+api:
+  key: ${API_KEY}
