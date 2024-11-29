@@ -1,6 +1,6 @@
-package com.overhere.backend.repository;
+package com.overhere.backend.dao;
 
-import com.overhere.backend.entity.TouristAttraction;
+import com.overhere.backend.domain.TouristAttraction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

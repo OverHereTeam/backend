@@ -1,8 +1,8 @@
 package com.overhere.backend.service;
 
 import com.overhere.backend.dto.response.urlResponse.ResponseDtoUrl3;
-import com.overhere.backend.entity.TouristAttraction;
-import com.overhere.backend.repository.TouristAttractionRepository;
+import com.overhere.backend.domain.TouristAttraction;
+import com.overhere.backend.dao.TouristAttractionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

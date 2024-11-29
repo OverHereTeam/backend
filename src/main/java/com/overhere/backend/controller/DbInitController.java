@@ -2,12 +2,11 @@ package com.overhere.backend.controller;
 
 import com.overhere.backend.dto.response.urlResponse.ResponseDtoUrl3;
 import com.overhere.backend.dto.request.RequestDto;
-import com.overhere.backend.entity.TouristAttraction;
+import com.overhere.backend.domain.TouristAttraction;
 import com.overhere.backend.service.DbInitService;
 import com.overhere.backend.service.TouristAttractionService;
 import com.overhere.backend.util.Util;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Request;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
