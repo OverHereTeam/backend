@@ -1,4 +1,4 @@
-package com.overhere.backend;
+package com.overhere.backend.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
