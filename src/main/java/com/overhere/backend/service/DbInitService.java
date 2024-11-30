@@ -5,9 +5,9 @@ import com.overhere.backend.dto.response.urlResponse.ResponseDtoUrl10;
 import com.overhere.backend.dto.response.urlResponse.ResponseDtoUrl3;
 import com.overhere.backend.dto.response.urlResponse.ResponseDtoUrl7;
 import com.overhere.backend.dto.response.urlResponse.ResponseDtoUrl9;
-import com.overhere.backend.entity.NonObstacleInfo;
-import com.overhere.backend.entity.TouristAttraction;
-import com.overhere.backend.repository.TouristAttractionRepository;
+import com.overhere.backend.domain.NonObstacleInfo;
+import com.overhere.backend.domain.TouristAttraction;
+import com.overhere.backend.dao.TouristAttractionRepository;
 import com.overhere.backend.util.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor

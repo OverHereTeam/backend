@@ -1,4 +1,4 @@
-package com.overhere.backend.entity;
+package com.overhere.backend.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
