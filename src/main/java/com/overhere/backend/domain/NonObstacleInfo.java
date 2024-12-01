@@ -1,20 +1,20 @@
 package com.overhere.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
+@Builder
 public class NonObstacleInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="non_obstacle_info_id")
     private Long id;
-
+    
     @OneToOne(mappedBy = "nonObstacleInfo")
     private TouristAttraction touristAttraction;
 
