@@ -1,6 +1,7 @@
 package com.overhere.backend.controller;
 
-import com.overhere.backend.dto.response.ResponseDtoTADetail;
+import com.overhere.backend.dto.response.ResponseDtoMain;
+import com.overhere.backend.dto.response.ResponseDtoTA;
 import com.overhere.backend.service.TouristAttractionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class TouristAttractionController {
     private final TouristAttractionService touristAttractionService;
     
+    @GetMapping
+    public ResponseEntity<ResponseDtoMain> findAllForMain() {
+        return new ResponseEntity<>(touristAttractionService.findAllForMain(), HttpStatus.OK);
+    }
+    
     @GetMapping("/{touristAttractionId}")
-    public ResponseEntity<ResponseDtoTADetail> findOneDetail(@PathVariable Long touristAttractionId) {
+    public ResponseEntity<ResponseDtoTA.Detail> findOneDetail(@PathVariable Long touristAttractionId) {
         return new ResponseEntity<>(touristAttractionService.findOneDetail(touristAttractionId), HttpStatus.OK);
     }
 }
