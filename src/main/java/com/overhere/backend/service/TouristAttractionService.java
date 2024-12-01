@@ -1,8 +1,11 @@
 package com.overhere.backend.service;
 
-import com.overhere.backend.dto.response.urlResponse.ResponseDtoUrl3;
-import com.overhere.backend.domain.TouristAttraction;
 import com.overhere.backend.dao.TouristAttractionRepository;
+import com.overhere.backend.domain.NonObstacleInfo;
+import com.overhere.backend.domain.TouristAttraction;
+import com.overhere.backend.dto.response.ResponseDtoNonObstacleInfo;
+import com.overhere.backend.dto.response.ResponseDtoTADetail;
+import com.overhere.backend.dto.response.urlResponse.ResponseDtoUrl3;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,17 +18,46 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class TouristAttractionService {
     private final TouristAttractionRepository touristAttractionRepository;
-
-    //List 전부 Save
+    
+    @Transactional(readOnly = true)
+    public ResponseDtoTADetail findOneDetail(Long touristAttractionId) {
+        TouristAttraction findTA = touristAttractionRepository.findById(touristAttractionId)
+                .orElseThrow(() -> new RuntimeException("NOT FOUND TOURIST ATTRACTION"));
+        NonObstacleInfo findNonObstacleInfo = findTA.getNonObstacleInfo();
+        
+        // TODO - From 사용하기
+        ResponseDtoNonObstacleInfo newNonObstacleInfo = ResponseDtoNonObstacleInfo.builder()
+                .helpdog(findNonObstacleInfo.getHelpdog())
+                .audioguide(findNonObstacleInfo.getAudioguide())
+                .videoguide(findNonObstacleInfo.getVideoguide())
+                .exitLocation(findNonObstacleInfo.getExitLocation())
+                .publictransport(findNonObstacleInfo.getPublictransport())
+                .parking(findNonObstacleInfo.getParking())
+                .restroom(findNonObstacleInfo.getRestroom())
+                .build();
+        
+        // TODO - From 사용하기
+        return ResponseDtoTADetail.builder()
+                .id(touristAttractionId)
+                .title(findTA.getTitle())
+                .address1(findTA.getAddress1())
+                .thumbnail1(findTA.getThumbnail1())
+                .thumbnail2(findTA.getThumbnail2())
+                .tel(findTA.getTel())
+                .nonObstacleInfo(newNonObstacleInfo)
+                .build();
+    }
+    
+    // List 전부 Save
     @Transactional
     public void saveTouristAttractions(List<TouristAttraction> touristAttractionList) {
         touristAttractionRepository.saveAll(touristAttractionList);
     }
-
-    //Dto 배열 List로 반환
+    
+    // Dto 배열 List로 반환
     public List<TouristAttraction> toTouristAttractionList(ResponseDtoUrl3 responseDtoUrl3) {
         List<TouristAttraction> touristAttractionList = new ArrayList<>();
-
+        
         Stream<ResponseDtoUrl3.Item> stream = responseDtoUrl3.getResponse().getBody().getItems().getItem().stream();
         stream.forEach(item -> {
             TouristAttraction touristAttraction = TouristAttraction.builder()
@@ -44,12 +76,7 @@ public class TouristAttractionService {
                     .build();
             touristAttractionList.add(touristAttraction);
         });
-
+        
         return touristAttractionList;
     }
-
-
-
-
-
 }
