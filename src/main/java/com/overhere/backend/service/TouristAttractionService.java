@@ -15,9 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 @Service
@@ -44,8 +43,15 @@ public class TouristAttractionService {
         );
         
         List<TouristAttraction> touristAttractions = touristAttractionRepository.findAll(sort); // sort 기준으로 정렬해서 반환
-        Map<AreaCode, List<ResponseDtoTA.Main>> listLocation = new HashMap<>();
-        Map<UseNonObstacle, List<ResponseDtoTA.Main>> listNonObstacle = new HashMap<>();
+        
+        if (touristAttractions.isEmpty()) {
+            throw new NullPointerException("관광지가 없습니다.");
+        }
+
+//        HashMap<AreaCode, List<ResponseDtoTA.Main>> listLocation = new HashMap<>(); // 위치별 관광지 리스트
+//        HashMap<UseNonObstacle, List<ResponseDtoTA.Main>> listNonObstacle = new HashMap<>(); // 무장애 정보별 관광지 리스트
+        EnumMap<AreaCode, List<ResponseDtoTA.Main>> listLocation = new EnumMap<>(AreaCode.class); // 위치별 관광지 리스트
+        EnumMap<UseNonObstacle, List<ResponseDtoTA.Main>> listNonObstacle = new EnumMap<>(UseNonObstacle.class); // 무장애 정보별 관광지 리스트
         
         for (AreaCode areaCode : AreaCode.values()) { // 지역별 관광지 추가
             listLocation.put(areaCode, touristAttractions.stream()
@@ -72,7 +78,7 @@ public class TouristAttractionService {
     @Transactional(readOnly = true)
     public ResponseDtoTA.Detail findOneDetail(Long touristAttractionId) {
         TouristAttraction findTA = touristAttractionRepository.findById(touristAttractionId)
-                .orElseThrow(() -> new RuntimeException("NOT FOUND TOURIST ATTRACTION"));
+                .orElseThrow(() -> new RuntimeException("관광지를 찾을 수 없습니다."));
         NonObstacleInfo findNonObstacleInfo = findTA.getNonObstacleInfo();
         
         // TODO - From 사용하기

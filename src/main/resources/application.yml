@@ -11,6 +11,11 @@ spring:
     hibernate:
       ddl-auto: ${LOCAL_DDL_TYPE}
 
+springdoc:
+  packages-to-scan: com.overhere.backend.controller
+  default-produces-media-type: application/json
+
+
 #logging:
 #  level:
 #    org:

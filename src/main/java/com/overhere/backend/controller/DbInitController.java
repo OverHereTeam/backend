@@ -6,6 +6,7 @@ import com.overhere.backend.domain.TouristAttraction;
 import com.overhere.backend.service.DbInitService;
 import com.overhere.backend.service.TouristAttractionService;
 import com.overhere.backend.util.Util;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@Hidden // Swagger에서 안 보이게 설정
 public class DbInitController {
 
     private final DbInitService dbInitService;
